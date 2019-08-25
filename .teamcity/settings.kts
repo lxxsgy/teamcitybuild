@@ -22,48 +22,7 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 'Debug' option is available in the context menu for the task.
 */
 
-version = "2019.1"
-
-project {
-    description = "Contains all other projects"
-
-    features {
-        feature {
-            id = "PROJECT_EXT_1"
-            type = "ReportTab"
-            param("startPage", "coverage.zip!index.html")
-            param("title", "Code Coverage")
-            param("type", "BuildReportTab")
-        }
-        feature {
-            id = "PROJECT_EXT_3"
-            type = "OAuthProvider"
-            param("clientId", "lxxsgy")
-            param("defaultTokenScope", "public_repo,repo,repo:status,write:repo_hook")
-            param("secure:clientSecret", "credentialsJSON:52cecdf4-be91-49ec-822d-f14148b1e46f")
-            param("displayName", "GitHub.com")
-            param("gitHubUrl", "https://github.com/")
-            param("providerType", "GitHub")
-        }
-        feature {
-            id = "PROJECT_EXT_5"
-            type = "OAuthProvider"
-            param("secure:userPass", "credentialsJSON:52cecdf4-be91-49ec-822d-f14148b1e46f")
-            param("displayName", "Docker Registry")
-            param("userName", "sgylxx")
-            param("providerType", "Docker")
-            param("repositoryUrl", "https://registry.cn-hongkong.aliyuncs.com")
-        }
-    }
-
-    cleanup {
-        preventDependencyCleanup = false
-    }
-
-    subProject(Test)
-}
-
-
-object Test : Project({
-    name = "test"
-})
+/*version = "2019.1"
+*/
+version = "2018.2"
+project(_Self.Project)
