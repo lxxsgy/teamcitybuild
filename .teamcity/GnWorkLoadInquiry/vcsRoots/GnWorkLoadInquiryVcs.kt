@@ -6,11 +6,7 @@ import jetbrains.buildServer.configs.kotlin.v2018_2.vcs.GitVcsRoot
 object GnWorkLoadInquiryVcs : GitVcsRoot({
     name = "https://github.com/lxxsgy/GN.WorkLoad.Inquiry/#refs/heads/master"
     url = "https://github.com/lxxsgy/GN.WorkLoad.Inquiry.git"
-<<<<<<< .mine
     branch = "refs/heads/master"
-=======
-
->>>>>>> .theirs
     authMethod = password {
         userName = "lxxsgy"
         password = "credentialsJSON:f47a1892-d19f-4134-bfef-0c8c796290c0"
