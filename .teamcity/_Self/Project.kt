@@ -19,9 +19,10 @@ object Project : Project({
             id = "PROJECT_EXT_29"
             name = "Docker Registry"
             url = "https://registry.cn-beijing.aliyuncs.com"
-            userName = "lei.zhang@gatherresource.com"
-            password = "credentialsJSON:a496943b-0ead-4106-996d-c99ab1fd48db"
+            userName = "lxxsgy"
+            password = "credentialsJSON:49409194-1df1-423d-8ed3-c99a86e89c78"
         }
+		
     }
 
     cleanup {
