@@ -26,6 +26,8 @@ changeVcsRoot(RelativeId("GnWorkLoadInquiryVcs")) {
     }
 
     (this as GitVcsRoot).apply {
+        name = "https://github.com/lxxsgy/GN.WorkLoad.Inquiry.git#refs/heads/master"
+        url = "https://github.com/lxxsgy/GN.WorkLoad.Inquiry.git"
         authMethod = password {
             userName = "lxxsgy"
             password = "credentialsJSON:f47a1892-d19f-4134-bfef-0c8c796290c0"
