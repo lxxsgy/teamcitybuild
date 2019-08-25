@@ -33,6 +33,7 @@ object GnWorkLoadInquiryBuild : BuildType({
         }
         helmDelete {
             name = "delete gnworkloadinquiry"
+            enabled = false
             release = "gnworkloadinquiry"
             additionalFlags = "--purge"
             param("teamcity.helm.command", "helm-delete")
