@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <project>
   <modelVersion>4.0.0</modelVersion>
-  <name>CpiHcfaService Config DSL Script</name>
-  <groupId>CpiHcfaService</groupId>
-  <artifactId>CpiHcfaService_dsl</artifactId>
+  <name>_Root Config DSL Script</name>
+  <groupId>_Root</groupId>
+  <artifactId>_Root_dsl</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <parent>
@@ -22,7 +22,7 @@
     </repository>
     <repository>
       <id>teamcity-server</id>
-      <url>http://172.16.6.44:8111/app/dsl-plugins-repository</url>
+      <url>http://172.16.6.178:8111/app/dsl-plugins-repository</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
