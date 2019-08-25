@@ -1,4 +1,8 @@
 import jetbrains.buildServer.configs.kotlin.v2018_2.*
+import jetbrains.buildServer.configs.kotlin.v2018_2.buildFeatures.dockerSupport
+import jetbrains.buildServer.configs.kotlin.v2018_2.buildSteps.dockerCommand
+import jetbrains.buildServer.configs.kotlin.v2018_2.triggers.vcs
+import jetbrains.buildServer.configs.kotlin.v2018_2.vcs.GitVcsRoot
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -25,28 +29,58 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2018.2"
 
 project {
-    description = "Contains all other projects"
+
+    vcsRoot(HttpsGithubComLxxsgyCpiHcfaTaskServiceGitRefsHeadsMaster)
+
+    buildType(Build)
+}
+
+object Build : BuildType({
+    name = "Build"
+
+    vcs {
+        root(HttpsGithubComLxxsgyCpiHcfaTaskServiceGitRefsHeadsMaster)
+    }
+
+    steps {
+        dockerCommand {
+            name = "bulid by Docker"
+            commandType = build {
+                source = path {
+                    path = "Dockerfile"
+                }
+                namesAndTags = "registry.cn-hongkong.aliyuncs.com/lxxsgy/cpihcfataskservice:1.0.%build.counter%"
+                commandArgs = "--pull"
+            }
+            param("dockerImage.platform", "linux")
+        }
+        dockerCommand {
+            name = "Docker push"
+            commandType = push {
+                namesAndTags = "registry.cn-hongkong.aliyuncs.com/lxxsgy/cpihcfataskservice:1.0.%build.counter%"
+            }
+        }
+    }
+
+    triggers {
+        vcs {
+        }
+    }
 
     features {
-        feature {
-            id = "PROJECT_EXT_1"
-            type = "ReportTab"
-            param("startPage", "coverage.zip!index.html")
-            param("title", "Code Coverage")
-            param("type", "BuildReportTab")
-        }
-        feature {
-            id = "PROJECT_EXT_5"
-            type = "OAuthProvider"
-            param("secure:userPass", "credentialsJSON:52cecdf4-be91-49ec-822d-f14148b1e46f")
-            param("displayName", "Docker Registry")
-            param("userName", "sgylxx")
-            param("providerType", "Docker")
-            param("repositoryUrl", "https://registry.cn-hongkong.aliyuncs.com")
+        dockerSupport {
+            loginToRegistry = on {
+                dockerRegistryId = "PROJECT_EXT_36"
+            }
         }
     }
+})
 
-    cleanup {
-        preventDependencyCleanup = false
+object HttpsGithubComLxxsgyCpiHcfaTaskServiceGitRefsHeadsMaster : GitVcsRoot({
+    name = "https://github.com/lxxsgy/CPI.Hcfa.TaskService.git#refs/heads/master"
+    url = "https://github.com/lxxsgy/CPI.Hcfa.TaskService.git"
+    authMethod = password {
+        userName = "lxxsgy"
+        password = "credentialsJSON:49409194-1df1-423d-8ed3-c99a86e89c78"
     }
-}
+})
